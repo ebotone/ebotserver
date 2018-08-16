@@ -157,6 +157,15 @@ function getRegistrationMas()
 		
 	$local_mas[] = $add;	
 	
+		$add = array();
+		
+		$add['abv'] = 'Your_remind_code';
+		$add['rus'] = 'Код для восстановления пароля';
+		$add['eng'] = "Password recovery code";
+		$add['deu'] = '';
+		
+	$local_mas[] = $add;	
+	
 	//============================	
 	return $local_mas;	
 
