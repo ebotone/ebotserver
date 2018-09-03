@@ -1,5 +1,99 @@
 <?php
 
+function getDialogVKlogin()
+{
+	global $dir_project, $vk_apiId;
+	
+	$con = '';
+	
+	if($vk_apiId != "")
+	{
+		$con .= "
+		
+		<script src='//vk.com/js/api/openapi.js' type='text/javascript'></script>
+		
+		<script>	
+
+		$(document).ready(function()
+		{
+		
+			function authInfo(response) {
+				
+			
+			  if (response.session) {
+				  
+				 var data = 'expire=' + response.session.expire + '&mid=' + response.session.mid + '&secret=' + response.session.secret + '&response_sid=' + response.session.sid + '&sig=' + response.session.sig;
+
+				  
+				$.ajax({						
+				type: 'POST',
+				url: '" . $dir_project . "/modules/registration/ajax/login_vk.php',
+				data: data,
+				success: function(msg){
+					
+					
+					if(msg == 'login' || msg == 'create')
+					{
+						alert('Добро пожаловать на проект!');				
+						location.reload();
+					}
+					else
+						alert(msg);
+
+					
+				}});	
+				
+				
+				
+			  } else {
+				alert('not auth');
+			  }
+			}	
+
+			VK.Auth.getLoginStatus(authInfo);
+			
+			$('.vk_login_btn').click(function(){
+
+				VK.init({
+				  apiId: " . $vk_apiId . "
+				});						
+				
+				VK.Auth.login(authInfo);
+				
+				
+				
+			});
+			
+			$('.vk_logout_btn').click(function(){
+				
+				VK.init({
+				  apiId: " . $vk_apiId . "
+				});						
+				
+				VK.Auth.logout();
+				
+				
+				
+			});		
+			
+		});	
+
+	</script>	
+
+
+
+	";		
+		
+	}
+	else
+		$con = "Переменная vk_apiId пуста";
+	
+
+
+	return $con;
+
+}
+
 function generate_code($number)
 {
     $arr = array('a','b','c','d','e','f',

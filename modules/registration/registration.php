@@ -50,7 +50,8 @@ function getContent($data)
 			.received_code{margin-bottom:10px}
 			
 			#registration_go_status{color:#ff0000; margin-top:5px}
-		
+			.reg_var{border:1px solid #808080; padding:10px}	
+			
 		</style>
 	
 		<!-- Main jumbotron for a primary marketing message or call to action -->
@@ -59,15 +60,50 @@ function getContent($data)
 			<div class="container">
 
 			  <form class="form-signin" role="form">
-				<h2 class="form-signin-heading">' .  $locale->getLocale('registration_title', $lng) . '</h2>
-				<input type="text" id="nikname" class="form-control" placeholder="' .  $locale->getLocale('nikname', $lng) . '" required autofocus>
-				<input type="password" id="reg_password" class="form-control" placeholder="' .  $locale->getLocale('password', $lng) . '" required>
-				<input type="password" id="reg_password2" class="form-control" placeholder="' .  $locale->getLocale('password2', $lng) . '" required>				
+				<h2 class="form-signin-heading">' .  $locale->getLocale('registration_title', $lng) . '</h2>';
 				
-				<div class="received_code">' .  $locale->getLocale('Received_code_title', $lng) . ' <a href="tg://resolve?domain=' . $Registration_bot_name . '" target="_blank">@' . $Registration_bot_name . '</a></div>
 				
-				<input type="text" id="code" class="form-control" placeholder="' .  $locale->getLocale('code', $lng) . '" required>
-				<button class="btn btn-lg btn-primary btn-block" type="submit" id="registration_go"><i class="fa fa-sign-in" aria-hidden="true" style="font-size:15px"></i> ' .  $locale->getLocale('registration_go', $lng) . '</button>
+				$count_registration_mas = count($registration_mas);
+				
+				for($k = 0; $k < $count_registration_mas; $k++)
+				{
+					if($count_registration_mas > 1)
+						$con .= '<div class="reg_var">';
+					
+					if($registration_mas[$k] == 'vk')
+					{
+						
+						$con .= '<div>VK</div>';
+						
+					}				
+					
+					
+					if($registration_mas[$k] == 'tg')
+					{
+						$con .= '	
+						
+							<input type="text" id="nikname" class="form-control" placeholder="' .  $locale->getLocale('nikname', $lng) . '" required autofocus>
+							<input type="password" id="reg_password" class="form-control" placeholder="' .  $locale->getLocale('password', $lng) . '" required>
+							<input type="password" id="reg_password2" class="form-control" placeholder="' .  $locale->getLocale('password2', $lng) . '" required>				
+				
+							<div class="received_code">' .  $locale->getLocale('Received_code_title', $lng) . ' <a href="tg://resolve?domain=' . $Registration_bot_name . '" target="_blank">@' . $Registration_bot_name . '</a></div>
+				
+							<input type="text" id="code" class="form-control" placeholder="' .  $locale->getLocale('code', $lng) . '" required>
+							<button class="btn btn-lg btn-primary btn-block" type="submit" id="registration_go"><i class="fa fa-sign-in" aria-hidden="true" style="font-size:15px"></i> ' .  $locale->getLocale('registration_go', $lng) . '</button>	
+							';						
+						
+					}
+					
+					if($count_registration_mas > 1)
+						$con .= '</div>';
+					
+					if(($k + 1) < $count_registration_mas)
+						$con .= "<div align='center'>ИЛИ</div>";
+				}
+								
+				
+				
+				$con .= '			
 				
 				<div id="registration_go_status"></div>
 				

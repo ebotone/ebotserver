@@ -452,6 +452,27 @@ if($ok)
 		
 		<ul class="nav nav-pills pull-right">';
 		
+		if($vk_like)
+		{
+			$con .= '<li>
+			
+				<!-- Put this script tag to the <head> of your page -->
+				<script type="text/javascript" src="https://vk.com/js/api/openapi.js?157"></script>
+
+				<script type="text/javascript">
+				  VK.init({apiId: ' . $vk_apiId . ', onlyWidgets: true});
+				</script>
+
+				<!-- Put this div tag to the place, where the Like block will be -->
+				<div id="vk_like"></div>
+				<script type="text/javascript">
+				VK.Widgets.Like("vk_like", {type: "button"});
+				</script>			
+			
+			</li>';			
+			
+		}		
+		
 		$lng_list = $locale->getLangs();
 		
 		$count_lng_list = count($lng_list);

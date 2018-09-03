@@ -344,6 +344,15 @@ function getDefaultMas()
 	
 		$add = array();
 		
+		$add['abv'] = 'del_element_proccess';
+		$add['rus'] = 'Удаление элемента';
+		$add['eng'] = "Delete items";
+		$add['deu'] = '';
+		
+	$local_mas[] = $add;	
+	
+		$add = array();
+		
 		$add['abv'] = 'nikname';
 		$add['rus'] = 'Логин';
 		$add['eng'] = "Логин";
