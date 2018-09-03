@@ -19,7 +19,7 @@ function login_vk($vk_id, $sid)
 	//Если нет такого - добавляем и авторизуемся
 	//Если есть - просто авторизуемся, если еще не авторизованы пож этой сессией	
 	
-	$query_d = "select id, status from " . $name_table_users . " where vk_id='" . mysql_real_escape_string($vk_id) . "' and vk_id=!''";			
+	$query_d = "select id, status from " . $name_table_users . " where vk_id='" . mysql_real_escape_string($vk_id) . "' and vk_id!=''";			
 	$text->my_sql_query = $query_d;		
 	$text->my_sql_execute();
 	$res = mysql_fetch_object($text->my_sql_res);
@@ -45,7 +45,7 @@ function login_vk($vk_id, $sid)
 		
 	}
 	
-	$query_d = "select id, status from " . $name_table_users . " where vk_id='" . mysql_real_escape_string($vk_id) . "' and vk_id=!''";			
+	$query_d = "select id, status from " . $name_table_users . " where vk_id='" . mysql_real_escape_string($vk_id) . "' and vk_id!=''";			
 	$text->my_sql_query = $query_d;		
 	$text->my_sql_execute();
 	$res = mysql_fetch_object($text->my_sql_res);

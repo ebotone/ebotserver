@@ -297,7 +297,7 @@ if($ok)
 				$name = $user_data['nikname'];
 			
 			$con .= '
-			<li style=" margin-top:7px">
+			<li>
 
 				<span id="logout_status"></span>
 
