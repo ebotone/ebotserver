@@ -33,6 +33,7 @@ function login_vk($vk_id, $sid)
 		$insert_data_mas = array();	
 		
 		$insert_data_mas[] = addData("vk_id", $vk_id);
+		$insert_data_mas[] = addData("nikname", $vk_id);
 		$insert_data_mas[] = addData("status", 'user');
 		$insert_data_mas[] = addData("sid", $sid);
 		$insert_data_mas[] = addData("datetime", 'now()');
