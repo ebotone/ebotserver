@@ -12,6 +12,64 @@ function getDataRoot()
 	
 }
 
+function login_vk($vk_id, $sid)
+{
+	global $text, $name_table_users, $name_table_sessions;	
+	
+	//Если нет такого - добавляем и авторизуемся
+	//Если есть - просто авторизуемся, если еще не авторизованы пож этой сессией	
+	
+	$query_d = "select id, status from " . $name_table_users . " where vk_id='" . mysql_real_escape_string($vk_id) . "' and vk_id=!''";			
+	$text->my_sql_query = $query_d;		
+	$text->my_sql_execute();
+	$res = mysql_fetch_object($text->my_sql_res);
+	$id = $res->id;
+	$status = $res->status;	
+	
+	if(!($id > 0))
+	{
+		//Такого нет, добавим
+		
+		$insert_data_mas = array();	
+		
+		$insert_data_mas[] = addData("vk_id", $vk_id);
+		$insert_data_mas[] = addData("status", 'user');
+		$insert_data_mas[] = addData("sid", $sid);
+		$insert_data_mas[] = addData("datetime", 'now()');
+		
+		$query_insert = getInsert($name_table_users, $insert_data_mas);		
+
+		$text->my_sql_query = $query_insert;
+		$text->my_sql_execute();		
+		
+	}
+	
+	$query_d = "select id, status from " . $name_table_users . " where vk_id='" . mysql_real_escape_string($vk_id) . "' and vk_id=!''";			
+	$text->my_sql_query = $query_d;		
+	$text->my_sql_execute();
+	$res = mysql_fetch_object($text->my_sql_res);
+	$id = $res->id;
+	$status = $res->status;		
+	
+	if($id > 0)
+	{
+		//Нашли юзера
+		//Если есть в таблице сессий - обновим, если нет - добавим
+		
+		$data_mas = array();
+		$data_mas['user_id'] = $id;
+		$data_mas['sid'] = $sid;
+		
+		addSession($data_mas);	
+		
+		
+	}	
+	
+	if($status != "")
+		return $status;		
+	
+}
+
 function login($hash, $password_md5, $sid)
 {
 	global $text, $name_table_users;

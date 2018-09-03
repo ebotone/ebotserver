@@ -202,7 +202,7 @@ if($ok)
 	' . $fonts . '
 
     <!-- Bootstrap core CSS -->
-    <link href="' . $dir_project . '/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="' . $dir_project . '/bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="' . $dir_project . '/bootstrap/css/bootstrap-select.css" rel="stylesheet">
 	
 	<meta name="keywords" content="рассылка, рассылка Вконтакте, холодные звонки, привлечение клиентов, поиск клиентов" > 
@@ -297,12 +297,12 @@ if($ok)
 				$name = $user_data['nikname'];
 			
 			$con .= '
-			<li>
+			<li style=" margin-top:7px">
 
 				<span id="logout_status"></span>
 
 				<div class="text-primary" id="nikname_title">' . $name . '</div>
-				<button type="submit" id="logout_go" class="btn btn-success"><i class="fa fa-sign-out" aria-hidden="true" style="font-size:15px"></i> ' . $locale->getLocale('Logout', $lng) . '</button>
+				<button type="submit" id="logout_go" class="btn btn-success"><i class="fa fa-sign-out" aria-hidden="true" style="font-size:15px;"></i> ' . $locale->getLocale('Logout', $lng) . '</button>
 			</li>	
 			
 			<script>
@@ -352,10 +352,10 @@ if($ok)
 						<span id="login_status"></span>
 					</div>
 					<div class="form-group">
-					  <input type="text" placeholder="Login or Hash" id="hash" class="form-control" value="' . $hash . '">
+					  <input type="text" placeholder="Login or Hash" id="hash" class="form-control" style="width:170px" value="' . $hash . '">
 					</div>
 					<div class="form-group">
-					  <input type="password" id="password" placeholder="Password" class="form-control">
+					  <input type="password" id="password" placeholder="Password" class="form-control" style="width:170px">
 					</div>
 					<button type="submit" id="login_go" class="btn btn-success"><i class="fa fa-sign-in" aria-hidden="true" style="font-size:15px"></i> ' . $locale->getLocale('Login', $lng) . '</button>
 				  </form>
@@ -443,6 +443,13 @@ if($ok)
 	
 	//=========== content =============================================================================		
 			
+	if(!($user_id > 0) && in_array('vk', $registration_mas))
+	{
+		require_once(realpath(__DIR__) . '/modules/registration/registration_utils.php');
+		
+		$con .= getDialogVKlogin();
+		
+	}
 	
 	$con .= '
 	

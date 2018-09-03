@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS `@@name_table_users@@`;
 CREATE TABLE `@@name_table_users@@` (
   `id` int(11) NOT NULL,
   `chat_id` varchar(15) NOT NULL,
+  `vk_id` varchar(20) NOT NULL,
   `username` varchar(50) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,

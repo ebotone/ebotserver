@@ -73,7 +73,7 @@ function getContent($data)
 					if($registration_mas[$k] == 'vk')
 					{
 						
-						$con .= '<div>VK</div>';
+						$con .= '<div align="center"><img class="vk_login_btn" src="' . $dir_project . '/images/vk.png" width="50px"></div>';
 						
 					}				
 					
@@ -98,7 +98,7 @@ function getContent($data)
 						$con .= '</div>';
 					
 					if(($k + 1) < $count_registration_mas)
-						$con .= "<div align='center'>ИЛИ</div>";
+						$con .= "<div align='center'><b>ИЛИ</b></div>";
 				}
 								
 				

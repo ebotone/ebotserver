@@ -12,6 +12,11 @@ function getDialogVKlogin()
 		
 		<script src='//vk.com/js/api/openapi.js' type='text/javascript'></script>
 		
+		<style>
+			.vk_login_btn{cursor:pointer}
+			.vk_logout_btn{cursor:pointer}
+		</style>		
+		
 		<script>	
 
 		$(document).ready(function()
@@ -27,12 +32,12 @@ function getDialogVKlogin()
 				  
 				$.ajax({						
 				type: 'POST',
-				url: '" . $dir_project . "/modules/registration/ajax/login_vk.php',
+				url: '" . $dir_project . "/login/login_vk.php',
 				data: data,
 				success: function(msg){
 					
 					
-					if(msg == 'login' || msg == 'create')
+					if(msg == 'reload')
 					{
 						alert('Добро пожаловать на проект!');				
 						location.reload();
@@ -46,11 +51,11 @@ function getDialogVKlogin()
 				
 				
 			  } else {
-				alert('not auth');
+				
 			  }
 			}	
 
-			VK.Auth.getLoginStatus(authInfo);
+			//VK.Auth.getLoginStatus(authInfo);
 			
 			$('.vk_login_btn').click(function(){
 

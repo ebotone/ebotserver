@@ -58,7 +58,8 @@ $group_id = '';//Можно найти в ВАША_ГРУППА_ВКОНТАКТ
 
 $Company = $ebot_server . ' ' . $version;//Этот текст отражается в шапке проекта и его подвале
 $Registration_bot_name = 'ebot_server_bot';//Имя бота через которого будет получен код для регистрации (Ваш бот). Имя бота без знака собаки
-$vk_apiId = '';//apiId можно получить тут: https://vk.com/dev/Login
+$vk_apiId = '';//apiId можно получить тут: https://vk.com/apps?act=manage
+$vk_APP_SHARED_SECRET = '';//APP_SHARED_SECRET можно получить тут: https://vk.com/apps?act=manage
 
 $logo_src = 'http://ebot.one/images/ebot_server_logo.png';//Лого на главной (модуль main)
 
@@ -68,8 +69,8 @@ $logo_src = 'http://ebot.one/images/ebot_server_logo.png';//Лого на гла
 $registration = false;
 
 $registration_mas = [];//Способы рагистрации
-$registration_mas[] = 'vk';//Необходим vk_apiId
-$registration_mas[] = 'tg';//Необходим Registration_bot_name
+//$registration_mas[] = 'vk';//Необходим vk_apiId и vk_APP_SHARED_SECRET
+//$registration_mas[] = 'tg';//Необходим Registration_bot_name
 
 //===========================================
 //Кнопка "мне нравится" Вконтакте
