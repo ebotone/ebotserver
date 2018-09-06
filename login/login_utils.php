@@ -1,5 +1,44 @@
 <?php
 
+function addSession($data_mas)
+{
+	global $text, $name_table_sessions;	
+	
+	$user_id = $data_mas['user_id'];
+	$sid = $data_mas['sid'];
+	
+	$query_d = "select id as id_session from " . $name_table_sessions . " where user_id='" . mysql_real_escape_string($user_id) . "' and sid='" . mysql_real_escape_string($sid) . "'";			
+	$text->my_sql_query = $query_d;		
+	$text->my_sql_execute();
+	$res = mysql_fetch_object($text->my_sql_res);
+	$id_session = $res->id_session;		
+	
+	if($id_session > 0)
+	{
+		//Такая сессия с этим юзером есть - ничего не делаем	
+		
+	}
+	else
+	{
+		//Сессии нет, добавляем
+		
+		$insert_data_mas = array();	
+		
+		$insert_data_mas[] = addData("user_id", $user_id);
+		$insert_data_mas[] = addData("sid", $sid);
+		$insert_data_mas[] = addData("datetime", 'now()');
+		
+		$query_insert = getInsert($name_table_sessions, $insert_data_mas);		
+
+		$text->my_sql_query = $query_insert;
+		$text->my_sql_execute();	
+		
+	}	
+	
+
+	
+}
+
 function getDataRoot()
 {
 	global $text, $name_table_users;
@@ -82,10 +121,13 @@ function login($hash, $password_md5, $sid)
 	$text->my_sql_query = $select;
 	$text->my_sql_execute();
 	$res = mysql_fetch_object($text->my_sql_res);
+	$id = $res->id;
 	$status = $res->status;		
 	
-	if($status != "")
-		return $status;
+	if($id > 0)
+	{
+		//Нашли
+	}
 	else
 	{
 		//Нет такого походу - наверное у нас логин а не hash	
@@ -97,10 +139,32 @@ function login($hash, $password_md5, $sid)
 		$text->my_sql_query = $select;
 		$text->my_sql_execute();
 		$res = mysql_fetch_object($text->my_sql_res);
-		return $res->status;			
+		$id = $res->id;
+		$status = $res->status;			
 		
 	}
 	
+	if($id > 0)
+	{
+		//Нашли юзера
+		//Если есть в таблице сессий - обновим, если нет - добавим
+		
+		$data_mas = array();
+		$data_mas['user_id'] = $id;
+		$data_mas['sid'] = $sid;
+		
+		addSession($data_mas);	
+		
+		
+	}
+	else
+	{
+		//Не нашли
+
+	}	
+	
+	
+	return $status;	
 }
 
 function logout($sid)
