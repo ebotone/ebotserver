@@ -108,4 +108,19 @@ ALTER TABLE `@@name_table_act_questions@@`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;  
   
   
+DROP TABLE IF EXISTS `@@name_table_sessions@@`;
+CREATE TABLE `@@name_table_sessions@@` (
+  `id` int(11) NOT NULL,
+  `user_id` int(10) NOT NULL,
+  `sid` varchar(32) NOT NULL,
+  `from_user_id` int(10) NOT NULL,
+  `datetime` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `@@name_table_sessions@@`
+  ADD UNIQUE KEY `id` (`id`);  
+  
+ALTER TABLE `@@name_table_sessions@@`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;  
+  
 COMMIT;  

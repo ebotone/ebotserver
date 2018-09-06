@@ -50,6 +50,8 @@ if($ok)
 		$query_create_table_users = str_replace("@@name_table_questions@@", $name_table_questions, $query_create_table_users);
 		$query_create_table_users = str_replace("@@name_table_group_questions@@", $name_table_group_questions, $query_create_table_users);
 		$query_create_table_users = str_replace("@@name_table_act_questions@@", $name_table_act_questions, $query_create_table_users);
+		
+		$query_create_table_users = str_replace("@@name_table_sessions@@", $name_table_sessions, $query_create_table_users);
 
 		$queries = explode (";", $query_create_table_users); 
 		foreach ($queries as $q) { 

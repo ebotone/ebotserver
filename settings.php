@@ -19,11 +19,12 @@ $db_pre = "";//Префикс таблиц в базе данных. Т.е. ес
 
 $name_table_users = $db_pre . 'ebot_users';//Таблица для хранения пользователей
 $name_table_logs = $db_pre . 'ebot_logs';//Таблица для хранения логов и диалогов
+$name_table_sessions = $db_pre . 'ebot_sessions';//Таблица для сессий
 
 $dir_project = '/all/ebot_server';
 
 //===========================================
-//Настройки хоста
+//Настройки хоста редактора
 
 $HTTP = 'https';//http или https
 $HTTP_HOST = 'ebot.one';//Например, ebot.one
