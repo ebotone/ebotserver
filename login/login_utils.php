@@ -117,7 +117,7 @@ function login($hash, $password_md5, $sid)
 	$text->my_sql_query='update ' . $name_table_users . ' set sid = "' . mysql_real_escape_string($sid) . '" where hash = "' . mysql_real_escape_string($hash) . '" and password = "' . mysql_real_escape_string($password_md5) . '"';	
 	$text->my_sql_execute();		
 	
-	$select = 'select status from ' . $name_table_users . ' where sid = "' . mysql_real_escape_string($sid) . '"';	
+	$select = 'select id, status from ' . $name_table_users . ' where sid = "' . mysql_real_escape_string($sid) . '"';	
 	$text->my_sql_query = $select;
 	$text->my_sql_execute();
 	$res = mysql_fetch_object($text->my_sql_res);
@@ -135,7 +135,7 @@ function login($hash, $password_md5, $sid)
 		$text->my_sql_query='update ' . $name_table_users . ' set sid = "' . mysql_real_escape_string($sid) . '" where nikname = "' . mysql_real_escape_string($hash) . '" and password = "' . mysql_real_escape_string($password_md5) . '"';	
 		$text->my_sql_execute();		
 		
-		$select = 'select status from ' . $name_table_users . ' where sid = "' . mysql_real_escape_string($sid) . '"';	
+		$select = 'select id, status from ' . $name_table_users . ' where sid = "' . mysql_real_escape_string($sid) . '"';	
 		$text->my_sql_query = $select;
 		$text->my_sql_execute();
 		$res = mysql_fetch_object($text->my_sql_res);

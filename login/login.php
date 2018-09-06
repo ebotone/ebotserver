@@ -6,6 +6,8 @@ require_once(realpath(__DIR__) . '/../login/login_utils.php');
 require_once(realpath(__DIR__) . '/../modules/modules_utils.php');
 require_once(realpath(__DIR__) . '/settings.php');
 
+require_once(realpath(__DIR__) . '/../mysql_utils.php');//Добавление в базу (для таблицы сессий)
+
 	//=========== locale ================
 		
 	require_once(realpath(__DIR__) . '/../locale/locale_data.php');//Это вообще всегда подключаем - это дефолтовый словарь - без него локаль не работает впринципе	
