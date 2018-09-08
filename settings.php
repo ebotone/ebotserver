@@ -32,10 +32,11 @@ $HTTP_HOST = 'ebot.one';//Например, ebot.one
 //===========================================
 //Настройки бота
 
-$bot_type = 'vkg';//telegram или vkg (бот для групп вконтакте)
+$bot_type = 'telegram';//telegram или vkg (бот для групп вконтакте)
 
 $bot_id = '';
 $key_md5 = md5('');//md5 от значения BOT_EDITOR_KEY (его можно получить в настройких бота в редакторе в пункте где указан API KEY от ботфазера)
+$bot_api_key = '';//API KEY от ботфазера. Нужен, в случае если вам потребуется принимать на сервере (здесь) файлы от бота, например аудио
 $admin_user_id = '';//Id учетки в редакторе. Отображается на главной странице редактора в самом верху после входа в систему
 
 //admin_chat_id - ДЛЯ БОТОВ telegram и для vkg (бот для групп вконтакте)
@@ -63,6 +64,8 @@ $vk_apiId = '';//apiId можно получить тут: https://vk.com/apps?a
 $vk_APP_SHARED_SECRET = '';//APP_SHARED_SECRET можно получить тут: https://vk.com/apps?act=manage
 
 $logo_src = 'http://ebot.one/images/ebot_server_logo.png';//Лого на главной (модуль main)
+
+$yandex_key = '';//Yandex SpeechKit KEY
 
 //===========================================
 //Регистрация произвольных пользователей на сайте
@@ -157,6 +160,12 @@ $modules[] = $add;
 
 	$add = array();
 	$add['name'] = 'demo2';
+	$add['icon'] = 'fa-meh';
+	
+$modules[] = $add;	
+
+	$add = array();
+	$add['name'] = 'demo3';
 	$add['icon'] = 'fa-meh';
 	
 $modules[] = $add;		

@@ -66,6 +66,15 @@ function getDefaultMas()
 		$add['deu'] = '';
 		
 	$local_mas[] = $add;	
+	
+		$add = array();
+		
+		$add['abv'] = 'demo3';
+		$add['rus'] = 'Демо 3';
+		$add['eng'] = "Demo 3";
+		$add['deu'] = '';
+		
+	$local_mas[] = $add;	
 
 		$add = array();
 		
@@ -712,6 +721,15 @@ function getDefaultMas()
 		$add['abv'] = 'demo2_title';
 		$add['rus'] = 'Отправка асинхронного сообщения пользователю';
 		$add['eng'] = "Sending an asynchronous message to a user";
+		$add['deu'] = '';
+		
+	$local_mas[] = $add;
+
+		$add = array();
+		
+		$add['abv'] = 'demo3_title';
+		$add['rus'] = 'Получение аудиофайла, распознавание в нем речи, синтез аудиофайла с ответом';
+		$add['eng'] = "Receiving an audio file, speech recognition, synthesis of an audio file with a response";
 		$add['deu'] = '';
 		
 	$local_mas[] = $add;	

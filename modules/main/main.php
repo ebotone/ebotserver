@@ -85,7 +85,7 @@ function getContent($data)
 				
 				$demo_link = getModuleLink('demo');	
 				$demo2_link = getModuleLink('demo2');	
-				
+				$demo3_link = getModuleLink('demo3');	
 				
 				if($user_status == 'admin' || $user_status == 'root')
 				{
@@ -95,7 +95,10 @@ function getContent($data)
 						<p style="margin-top:10px"><a href="' . $demo_link . '" class="btn btn-primary btn-lg" role="button" target="_blank"><i class="fa fa-meh" aria-hidden="true" style="font-size:15px"></i> ' .  $locale->getLocale('demo', $lng) . '</a> <span class="span_title">' .  $locale->getLocale('demo_title', $lng) . '</span></p>';	
 				
 						$con .= '
-						<p style="margin-top:10px"><a href="' . $demo2_link . '" class="btn btn-primary btn-lg" role="button" target="_blank"><i class="fa fa-meh" aria-hidden="true" style="font-size:15px"></i> ' .  $locale->getLocale('demo2', $lng) . '</a> <span class="span_title">' .  $locale->getLocale('demo2_title', $lng) . '</span></p>';					
+						<p style="margin-top:10px"><a href="' . $demo2_link . '" class="btn btn-primary btn-lg" role="button" target="_blank"><i class="fa fa-meh" aria-hidden="true" style="font-size:15px"></i> ' .  $locale->getLocale('demo2', $lng) . '</a> <span class="span_title">' .  $locale->getLocale('demo2_title', $lng) . '</span></p>';		
+
+						$con .= '
+						<p style="margin-top:10px"><a href="' . $demo3_link . '" class="btn btn-primary btn-lg" role="button" target="_blank"><i class="fa fa-meh" aria-hidden="true" style="font-size:15px"></i> ' .  $locale->getLocale('demo3', $lng) . '</a> <span class="span_title">' .  $locale->getLocale('demo3_title', $lng) . '</span></p>';							
 					
 					$con .= '</div>';
 					

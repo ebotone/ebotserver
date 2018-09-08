@@ -196,13 +196,14 @@ function getEditorData($get, $post)
 			
 		}
 	
-		
+		$data_mas['method'] = 'get';
 	}
 	else
 	{
 		//POST
 		
 		$data_mas = $post;
+		$data_mas['method'] = 'post';
 	}
 	
 	return $data_mas;
