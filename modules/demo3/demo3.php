@@ -5,7 +5,7 @@ require_once(realpath(__DIR__) . '/../../data_utils.php');
 
 function getContent($data)
 {
-	global $text, $module, $log_file_display, $key_md5, $admin_user_id, $admin_chat_id, $log_data_to_file, $log_data_file_path, $log_data_file_name;
+	global $text, $module, $log_file_display, $key_md5, $admin_user_id, $admin_chat_id, $log_data_to_file, $log_data_file_path, $log_data_file_name, $bot_api_key, $yandex_key;
 	
 	$locale = $data['locale'];
 	$user_data = $data['user_data'];
@@ -62,6 +62,12 @@ function getContent($data)
 
 			if($admin_chat_id == '')			
 				$con .= '<div class="alert alert-danger">' .  $locale->getLocale('must_define', $lng) . ' <b>admin_chat_id</b></div>';			
+			
+			if($bot_api_key == '')			
+				$con .= '<div class="alert alert-danger">' .  $locale->getLocale('must_define', $lng) . ' <b>bot_api_key</b></div>';					
+			
+			if($yandex_key == '')			
+				$con .= '<div class="alert alert-danger">' .  $locale->getLocale('must_define', $lng) . ' <b>yandex_key</b></div>';				
 		  
 		$con .= '<div class="http_link_to_script"><b>' . $locale->getLocale('http_link_to_script', $lng) . "</b>: <span style='color:#0000ff'>http://" . $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']) . '/modules/' . $module . '/scripts/get_demo3.php</span></div>';  
 		  
