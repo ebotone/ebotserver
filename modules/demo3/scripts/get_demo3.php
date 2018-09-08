@@ -318,7 +318,6 @@ Array
 
 )
 
-    [enter_data_json] => {"type_private":"private","start_data":"","message_id":"61","language_code":"ru-ru","type_object":"location","file_info":{"message_id":"61","from":{"id":"576082439","is_bot":"0","first_name":"Osiris","username":"killing_game","language_code":"ru-ru"},"chat":{"id":"576082439","first_name":"Osiris","username":"killing_game","type":"private"},"date":"1536321566","location":{"latitude":"60.018582","longitude":"30.406851"},"raw_data":{"message_id":"61","from":{"id":"576082439","is_bot":"0","first_name":"Osiris","username":"killing_game","language_code":"ru-ru"},"chat":{"id":"576082439","first_name":"Osiris","username":"killing_game","type":"private"},"date":"1536321566","location":{"latitude":"60.018582","longitude":"30.406851"}},"bot_name":"orderto_bot"}}
 
 */
 
