@@ -26,15 +26,41 @@ function updatePassword($password_md5, $code)
 
 function getUserData($sid)
 {
-	global $text, $name_table_users;
+	global $text, $name_table_users, $name_table_sessions;
 	
-	$select = 'select *, id as user_id from ' . $name_table_users . ' where sid = "' . $sid . '"';			
-	$text->my_sql_query = $select;
-	$text->my_sql_execute();			
-	$res = mysql_fetch_object($text->my_sql_res); 		
-	$data = (array) $res;	
+	//Получим пользователя по sid, а потом уже данные по user_id
 	
-	//$data['user_id'] = $data['id'];
+	$data =  array();
+	
+	//===================
+	//Синхронизация со старым механизмом
+	
+		$select = 'select *, id as user_id from ' . $name_table_users . ' where sid != "" and sid = "' . $sid . '"';			
+		$text->my_sql_query = $select;
+		$text->my_sql_execute();			
+		$res = mysql_fetch_object($text->my_sql_res); 		
+		$data = (array) $res;		
+	
+		if($data['user_id'] > 0)
+			return $data;
+	
+	//===================
+	
+	$query_d = "select user_id from " . $name_table_sessions . " where sid='" . mysql_real_escape_string($sid) . "'";			
+	$text->my_sql_query = $query_d;		
+	$text->my_sql_execute();
+	$res = mysql_fetch_object($text->my_sql_res);
+	$user_id = $res->user_id;	
+	
+	if($user_id > 0)
+	{
+		$select = 'select *, id as user_id from ' . $name_table_users . ' where id = "' . $user_id . '"';			
+		$text->my_sql_query = $select;
+		$text->my_sql_execute();			
+		$res = mysql_fetch_object($text->my_sql_res); 		
+		$data = (array) $res;			
+		
+	}	
 	
 	return $data;
 }
