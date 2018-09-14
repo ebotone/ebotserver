@@ -94,6 +94,11 @@ function login_vk($vk_id, $sid)
 	if($id > 0)
 	{
 		//Нашли юзера
+		
+		
+		$text->my_sql_query='update ' . $name_table_users . ' set sid = "' . mysql_real_escape_string($sid) . '" where id = "' . $id . '"';	
+		$text->my_sql_execute();			
+		
 		//Если есть в таблице сессий - обновим, если нет - добавим
 		
 		$data_mas = array();
