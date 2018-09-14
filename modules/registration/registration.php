@@ -2,7 +2,7 @@
 
 function getContent($data)
 {
-	global $Registration_bot_name, $dir_project;
+	global $Registration_bot_name, $registration_mas, $dir_project;
 	
 	$locale = $data['locale'];
 	$user_data = $data['user_data'];
