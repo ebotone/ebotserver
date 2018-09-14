@@ -174,12 +174,34 @@ function login($hash, $password_md5, $sid)
 
 function logout($sid)
 {
-	global $text, $name_table_users;
+	global $text, $name_table_users, $name_table_sessions;
 	
 	if($sid != '')
 	{
 		$text->my_sql_query='update ' . $name_table_users . ' set sid = "" where sid = "' . mysql_real_escape_string($sid) . '"';	
-		$text->my_sql_execute();			
+		$text->my_sql_execute();		
+		
+		$query_d = "select from_user_id from " . $name_table_sessions . " where sid='" . mysql_real_escape_string($sid) . "'";			
+		$text->my_sql_query = $query_d;		
+		$text->my_sql_execute();
+		$res = mysql_fetch_object($text->my_sql_res);
+		$from_user_id = $res->from_user_id;		
+
+		if($from_user_id > 0)
+		{
+			$text->my_sql_query='update ' . $name_table_sessions . ' set from_user_id = "0", user_id = "' . $from_user_id . '" where sid = "' . mysql_real_escape_string($sid) . '"';	
+			$text->my_sql_execute();			
+		}	
+		else
+		{
+			//name_table_sessions
+			$query_d = "delete from " . $name_table_sessions . " where sid='" . mysql_real_escape_string($sid) . "'";			
+			$text->my_sql_query = $query_d;		
+			$text->my_sql_execute();			
+			
+		}		
+		
+
 		
 	}
 
