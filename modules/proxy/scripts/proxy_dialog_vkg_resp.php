@@ -35,8 +35,8 @@ function go_resp_speaker($data_mas)
 		
 		if($resp_data['text'] == "")
 		{
-			$error_isset = true;
-			$error_notice = 'Ответ пуст. Возможно где-то ошибка.';
+			//$error_isset = true;
+			//$error_notice = 'Ответ пуст. Возможно где-то ошибка.';
 			
 		}	
 		else
@@ -158,6 +158,27 @@ class Resp
 		//========================================
 		//========================================		
 
+		//Вытащим аудио			
+
+		$attachment = '';
+		
+		$data = $this->audioParse($chat_id, $con);	
+					
+		$con = $data['body'];				
+	
+		if(count($data['data']) > 0)
+		{
+			//У нас есть аудиозаписи
+			
+			foreach($data['data'] as $attache)
+				$attachment .= $attache['audio'] . ',';
+				
+				
+		}
+	
+		//========================================
+		//========================================		
+
 		//Вытащим title	
 		
 		$data = $this->getTitle($con);	
@@ -193,6 +214,7 @@ class Resp
 		'chat_id' => $chat_id,
 		'text'    => $con,
 		'keyboard_str' => $keyboard_str,
+		'attachment' => $attachment,
 		'parse_mode' => 'HTML',	
 		];			
 
@@ -597,6 +619,48 @@ class Resp
 	
 	
 	}		
+	
+	public function audioParse($chat_id, $body)
+	{
+		$return_data = array();
+		$return_data['my_type'] = 'undefined';	
+		$return_data['data'] = array();
+		
+		$result_count_z = preg_match_all("/\[vk_attache\|([^\|]{1,})\]/i", $body, $result_mas); 
+		
+		if($result_count_z > 0)
+		{							
+			for($k = 0; $k < $result_count_z; $k++)
+			{	
+				
+				$audio_src = trim($result_mas[1][$k]);
+				
+				$el = '[vk_attache|' . $audio_src . ']';	
+				
+				$audio_src = urldecode($audio_src);	
+				
+				$body = str_replace($el, '', $body);
+				
+				$return_data['my_type'] = 'audio';	
+				
+				$data = [
+					'chat_id' => $chat_id,
+					'caption'	  => '',
+					'audio'	  => $audio_src,
+					'text'    => '',
+				];	
+				
+
+				$return_data['data'][] = $data;		
+					
+			}
+		}
+
+		$return_data['body'] = $body;	
+	
+		return $return_data;			
+
+	}		
 
 	public function sendMessage($data)
 	{		
@@ -611,6 +675,9 @@ class Resp
 		
 		if($data['keyboard_str'] != "")
 			$request_params['keyboard'] = $data['keyboard_str'];	
+		
+		if($data['attachment'] != "")
+			$request_params['attachment'] = $data['attachment'];
 		
 		$post = 1;		
 		
