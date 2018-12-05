@@ -38,36 +38,33 @@ $resp_mas['status'] = 'none';
 
 if($ok)
 {
-	if($access_time_ok)
-	{		
-		//===================================================
 		
-		$query_create_table_users = implode("",file("../sql/query_create_table_users.sql"));
-		
-		$query_create_table_users = str_replace("@@name_table_users@@", $name_table_users, $query_create_table_users);
-		$query_create_table_users = str_replace("@@name_table_logs@@", $name_table_logs, $query_create_table_users);
-		
-		$query_create_table_users = str_replace("@@name_table_questions@@", $name_table_questions, $query_create_table_users);
-		$query_create_table_users = str_replace("@@name_table_group_questions@@", $name_table_group_questions, $query_create_table_users);
-		$query_create_table_users = str_replace("@@name_table_act_questions@@", $name_table_act_questions, $query_create_table_users);
-		
-		$query_create_table_users = str_replace("@@name_table_sessions@@", $name_table_sessions, $query_create_table_users);
+	//===================================================
+	
+	$query_create_table_users = implode("",file("../sql/query_create_table_users.sql"));
+	
+	$query_create_table_users = str_replace("@@name_table_users@@", $name_table_users, $query_create_table_users);
+	$query_create_table_users = str_replace("@@name_table_logs@@", $name_table_logs, $query_create_table_users);
+	
+	$query_create_table_users = str_replace("@@name_table_questions@@", $name_table_questions, $query_create_table_users);
+	$query_create_table_users = str_replace("@@name_table_group_questions@@", $name_table_group_questions, $query_create_table_users);
+	$query_create_table_users = str_replace("@@name_table_act_questions@@", $name_table_act_questions, $query_create_table_users);
+	
+	$query_create_table_users = str_replace("@@name_table_sessions@@", $name_table_sessions, $query_create_table_users);
 
-		$queries = explode (";", $query_create_table_users); 
-		foreach ($queries as $q) { 
-		
-			$text->my_sql_query = $q;
-			$text->my_sql_execute();	
-		} 		
+	$queries = explode (";", $query_create_table_users); 
+	foreach ($queries as $q) { 
+	
+		$text->my_sql_query = $q;
+		$text->my_sql_execute();	
+	} 		
 
-		sleep(1);		
+	sleep(1);		
 
+	
+	$resp_mas['status'] = 'reload';
 		
-		$resp_mas['status'] = 'reload';
-		
-	}
-	else
-		$con = $locale->getLocale('access_time_error', $lng);
+
 	
 	$__session = $_SESSION;
 	session_write_close();	

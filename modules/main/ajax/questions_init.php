@@ -39,67 +39,64 @@ $resp_mas['status'] = 'none';
 
 if($ok)
 {
-	if($access_time_ok)
-	{		
-		$insert_data_mas = array();	
-		
-		$insert_data_mas[] = addData("group_name", 'Демо группа 1');
-		$insert_data_mas[] = addData("php_start", 'group1_start.php');
-		$insert_data_mas[] = addData("php_end", 'group1_end.php');
-		$insert_data_mas[] = addData("sps", 'Спасибо за ответы');
-		$insert_data_mas[] = addData("gname", '/pay');
-		$insert_data_mas[] = addData("datetime", 'now()');
-		
-		$query_insert = getInsert($name_table_group_questions, $insert_data_mas);		
+	
+	$insert_data_mas = array();	
+	
+	$insert_data_mas[] = addData("group_name", 'Демо группа 1');
+	$insert_data_mas[] = addData("php_start", 'group1_start.php');
+	$insert_data_mas[] = addData("php_end", 'group1_end.php');
+	$insert_data_mas[] = addData("sps", 'Спасибо за ответы');
+	$insert_data_mas[] = addData("gname", '/pay');
+	$insert_data_mas[] = addData("datetime", 'now()');
+	
+	$query_insert = getInsert($name_table_group_questions, $insert_data_mas);		
 
-		$text->my_sql_query = $query_insert;
-		$text->my_sql_execute();		
-		
-		$group_id = $text->my_sql_insert_id();//Получим вставленный id
-		
-		//+++
-		
-		$insert_data_mas = array();	
-		
-		$insert_data_mas[] = addData("group_id", $group_id);
-		$insert_data_mas[] = addData("title", 'Время');
-		$insert_data_mas[] = addData("name", 'Укажите время доставки');
-		$insert_data_mas[] = addData("field", 'field_1');
-		$insert_data_mas[] = addData("_type", 'string');
-		$insert_data_mas[] = addData("number", '2');
-		$insert_data_mas[] = addData("datetime", 'now()');
-		
-		$query_insert = getInsert($name_table_questions, $insert_data_mas);		
+	$text->my_sql_query = $query_insert;
+	$text->my_sql_execute();		
+	
+	$group_id = $text->my_sql_insert_id();//Получим вставленный id
+	
+	//+++
+	
+	$insert_data_mas = array();	
+	
+	$insert_data_mas[] = addData("group_id", $group_id);
+	$insert_data_mas[] = addData("title", 'Время');
+	$insert_data_mas[] = addData("name", 'Укажите время доставки');
+	$insert_data_mas[] = addData("field", 'field_1');
+	$insert_data_mas[] = addData("_type", 'string');
+	$insert_data_mas[] = addData("number", '2');
+	$insert_data_mas[] = addData("datetime", 'now()');
+	
+	$query_insert = getInsert($name_table_questions, $insert_data_mas);		
 
-		$text->my_sql_query = $query_insert;
-		$text->my_sql_execute();			
-		
-		//+++
-		
-		$insert_data_mas = array();	
-		
-		$insert_data_mas[] = addData("group_id", $group_id);
-		$insert_data_mas[] = addData("title", 'Адрес доставки');
-		$insert_data_mas[] = addData("name", 'Введите адрес доставки');
-		$insert_data_mas[] = addData("field", 'field_2');
-		$insert_data_mas[] = addData("_type", 'string');
-		$insert_data_mas[] = addData("number", '1');
-		$insert_data_mas[] = addData("datetime", 'now()');
-		
-		$query_insert = getInsert($name_table_questions, $insert_data_mas);		
+	$text->my_sql_query = $query_insert;
+	$text->my_sql_execute();			
+	
+	//+++
+	
+	$insert_data_mas = array();	
+	
+	$insert_data_mas[] = addData("group_id", $group_id);
+	$insert_data_mas[] = addData("title", 'Адрес доставки');
+	$insert_data_mas[] = addData("name", 'Введите адрес доставки');
+	$insert_data_mas[] = addData("field", 'field_2');
+	$insert_data_mas[] = addData("_type", 'string');
+	$insert_data_mas[] = addData("number", '1');
+	$insert_data_mas[] = addData("datetime", 'now()');
+	
+	$query_insert = getInsert($name_table_questions, $insert_data_mas);		
 
-		$text->my_sql_query = $query_insert;
-		$text->my_sql_execute();			
+	$text->my_sql_query = $query_insert;
+	$text->my_sql_execute();			
 
-		//===================================================
+	//===================================================
 
-		sleep(1);
+	sleep(1);
+	
+	$resp_mas['status'] = 'reload';
 		
-		$resp_mas['status'] = 'reload';
-		
-	}
-	else
-		$con = $locale->getLocale('access_time_error', $lng);
+
 	
 	$__session = $_SESSION;
 	session_write_close();	

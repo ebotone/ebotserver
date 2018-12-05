@@ -36,32 +36,27 @@ $resp_mas['status'] = 'none';
 	//ini_set('display_startup_errors', 1);
 
 if($ok)
-{
-	if($access_time_ok)
-	{		
+{	
 	
-		$insert_data_mas = array();	
-		
-		$insert_data_mas[] = addData("username", $admin_login);
-		$insert_data_mas[] = addData("nikname", $admin_login);
-		$insert_data_mas[] = addData("password", md5($admin_password));
-		$insert_data_mas[] = addData("status", 'root');
-		$insert_data_mas[] = addData("datetime", 'now()');
-		
-		$query_insert = getInsert($name_table_users, $insert_data_mas);		
+	$insert_data_mas = array();	
+	
+	$insert_data_mas[] = addData("username", $admin_login);
+	$insert_data_mas[] = addData("nikname", $admin_login);
+	$insert_data_mas[] = addData("password", md5($admin_password));
+	$insert_data_mas[] = addData("status", 'root');
+	$insert_data_mas[] = addData("datetime", 'now()');
+	
+	$query_insert = getInsert($name_table_users, $insert_data_mas);		
 
-		$text->my_sql_query = $query_insert;
-		$text->my_sql_execute();		
+	$text->my_sql_query = $query_insert;
+	$text->my_sql_execute();		
 
-		//===================================================
+	//===================================================
 
-		sleep(1);
-		
-		$resp_mas['status'] = 'reload';
-		
-	}
-	else
-		$con = $locale->getLocale('access_time_error', $lng);
+	sleep(1);
+	
+	$resp_mas['status'] = 'reload';		
+
 	
 	$__session = $_SESSION;
 	session_write_close();	
