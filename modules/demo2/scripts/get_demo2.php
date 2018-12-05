@@ -89,6 +89,7 @@ if($chat_id > 0)
 		$sender_data_mas['bot_id'] = $bot_id;//Какой бот отсылает (устанавить в settings.php в корне фреимворка)
 		$sender_data_mas['user_id'] = $admin_user_id;//Id пользователя в редакторе (устанавить в settings.php в корне фреимворка)
 		$sender_data_mas['key_md5'] = $key_md5;//Обязательное поле - md5 от ключа бота (поле BOT_EDITOR_KEY в настройках бота) (устанавить в settings.php в корне фреимворка)
+		$sender_data_mas['bot_api_key'] = $bot_api_key;//API KEY от ботфазера.
 		$sender_data_mas['to_user_id'] = $to_user_id;//Кому отослать
 		$sender_data_mas['sends_mas'] = $sends_mas;	
 		$sender_data_mas['HTTP_HOST'] = $HTTP_HOST;//(устанавить в settings.php в корне фреимворка)

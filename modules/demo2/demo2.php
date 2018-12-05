@@ -78,6 +78,9 @@ function getContent($data)
 			if($key_md5 == '')			
 				$con .= '<div class="alert alert-danger">' .  $locale->getLocale('must_define', $lng) . ' <b>key_md5</b></div>';
 			
+			if($bot_api_key == '')			
+				$con .= '<div class="alert alert-danger">' .  $locale->getLocale('must_define', $lng) . ' <b>bot_api_key</b></div>';	
+			
 			if($admin_user_id == '')			
 				$con .= '<div class="alert alert-danger">' .  $locale->getLocale('must_define', $lng) . ' <b>admin_user_id</b></div>';
 
