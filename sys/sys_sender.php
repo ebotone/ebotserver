@@ -162,9 +162,16 @@ class senderQueue
 				$test_easy = str_replace("%0A", "\n", $test_easy);
 					
 				$urlencode = urlencode($test_easy . "");
+				
+				$parse_mode = "";
+				
+				if($sends_mas['text'] != $test_easy)
+					$parse_mode = "markdown";
 	
-				$resp_con_mas['url'] = "https://api.telegram.org/bot" . $this->bot_api_key . "/sendMessage?chat_id=" . $chat_id . "&parse_mode=markdown&text=" . $urlencode;
-				$resp_con_mas['api_telegram_resp'] = file_get_contents("https://api.telegram.org/bot" . $this->bot_api_key . "/sendMessage?chat_id=" . $chat_id . "&parse_mode=markdown&text=" . $urlencode);	
+				$url = "https://api.telegram.org/bot" . $this->bot_api_key . "/sendMessage?chat_id=" . $chat_id . "&parse_mode=" . $parse_mode . "&text=" . $urlencode;
+	
+				$resp_con_mas['url'] = $url;
+				$resp_con_mas['api_telegram_resp'] = file_get_contents($url);	
 				
 			}			
 			
