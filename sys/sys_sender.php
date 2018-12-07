@@ -154,20 +154,22 @@ class senderQueue
 			$chat_id = $this->getChatId();
 			
 			foreach($this->sends_mas as $sends_mas)
-			{				
+			{		
+				$parse_mode = "";
+			
 				$test_easy = str_replace("[b]", "*", $sends_mas['text']);
 				$test_easy = str_replace("[/b]", "*", $test_easy);	
 				$test_easy = str_replace("<b>", "*", $test_easy);
-				$test_easy = str_replace("</b>", "*", $test_easy);		
+				$test_easy = str_replace("</b>", "*", $test_easy);	
+
+				if($sends_mas['text'] != $test_easy)
+					$parse_mode = "markdown";
+
+				
 				$test_easy = str_replace("%0A", "\n", $test_easy);
 					
 				$urlencode = urlencode($test_easy . "");
-				
-				$parse_mode = "";
-				
-				if($sends_mas['text'] != $test_easy)
-					$parse_mode = "markdown";
-	
+					
 				$url = "https://api.telegram.org/bot" . $this->bot_api_key . "/sendMessage?chat_id=" . $chat_id . "&parse_mode=" . $parse_mode . "&text=" . $urlencode;
 	
 				$resp_con_mas['url'] = $url;
